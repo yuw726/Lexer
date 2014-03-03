@@ -1,0 +1,38 @@
+// FromBinToC.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <string>
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+	int *a;
+	FILE *f1, *f2;
+	argc = 2;
+	if (argc != 2)
+	{
+		printf("Input formatt: br filename");
+	}
+	else
+	{
+		if ((f1 = fopen("1.b", "r")) == NULL)
+		{
+			printf("File does not exist: %s\n", "1.b");
+		}
+		else
+		{
+			fread(a, sizeof(int), 128000, f1);
+			printf("%s", a);
+			f2 = fopen("1.c", "w");
+			fwrite(a, sizeof(int), 128000, f2);
+			fclose(f1);
+			fclose(f2);
+		}
+	}
+
+	getchar();
+	return 0;
+}
+
